@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div>
+            <h1>Expense Tracker</h1>
+            <main>
+                <header>
+                    <div>
+                        <h2>Sign Up</h2>
+                    </div>
+                </header>
+
+                <section>
+                    <p>Input details</p>
+                    <form id="signupForm" onsubmit="return signUpUser()">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button type="button" onclick="signUpUser()">Sign Up</button>
+                    </form>
+                    <button class="login-button" onclick="redirectToLogin()">Already have an account? Back to Login</button>
+                </section>
+            </main>
+
+            <!--footer-->
+            <div class="footer">
+                <p class="copyright">© 2024 All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        function signUpUser() {
+            var email = document.getElementById('email').value;
+            var name = document.getElementById('name').value;
+            var password = document.getElementById('password').value;
+
+            // Create user object
+            var newUser = { name: name, email: email, password: password };
+
+            // Get existing users from localStorage or create an empty array
+            var users = JSON.parse(localStorage.getItem("users")) || [];
+
+            // Check if the email is already registered
+            var existingUser = users.find(u => u.email === email);
+            if (existingUser) {
+                alert("This email is already registered. Please use a different email.");
+                return false; // Prevent form submission
+            }
+
+            // Add new user to the array
+            users.push(newUser);
+
+            // Save updated user array back to localStorage
+            localStorage.setItem("users", JSON.stringify(users));
+
+            // Inform user about successful signup
+            alert('Sign up successful! Click OK to redirect to login page...');
+            setTimeout(function() {
+                redirectToLogin();
+            }, 2000); // Redirect after 2 seconds
+            
+            return false; // Prevent form submission
+        }
+
+        function redirectToLogin() {
+            window.location.href = "login.html"; // Redirect to login.html
+        }
+    </script>
+</body>
+</html>

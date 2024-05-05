@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" type="text/xsl" href="transaction-html.xslt">
+  </head>
+  <body>
+    <script>
+      // Check if user is logged in
+      var isLoggedIn = localStorage.getItem("isLoggedIn");
+
+      if (!isLoggedIn) {
+        // Display a warning message if user is not logged in
+        alert("Warning: You are not logged in. You will be redirected to the login page.");
+        // Redirect to login page
+        window.location.href = "login.html";
+      } else {
+        // Fetch user information from localStorage or any other source
+        var users = JSON.parse(localStorage.getItem("users"));
+        if (user) {
+        // Populate user's name in the user profile section
+        var name = document.getElementById('name').textContent;
+        }
+      }
+    </script>
+
+    <nav class="navbar">
+      <div class="user-profile">
+          <span id="userName"></span>
+          <img id="userIcon" src="icon.png" alt="User Icon">
+      </div>
+      <button onclick="logout()">Logout</button>
+    </nav>
+  
+    <h1>Expense Tracker</h1>
+
+    <canvas id="myChart"></canvas> <!-- Canvas element for the chart -->
+
+    <main>
+      <header>
+        <div>
+          <h5>Total Balance</h5>
+          <span id="balance">₱0.00</span>
+        </div>
+        <div>
+          <h5>Income</h5>
+          <span id="income">₱0.00</span>
+        </div>
+        <div>
+          <h5>Expense</h5>
+          <span id="expense">₱0.00</span>
+        </div>
+      </header>
+
+      <section>
+        <h3>Transactions</h3>
+        <ul id="transactionList"></ul>
+        <div id="status"></div>
+      </section>
+
+      <section>
+        <h3>Add Transaction</h3>
+
+        <form id="transactionForm">
+          <div>
+            <label for="type">
+              <input type="checkbox" name="type" id="type" />
+              <div class="option">
+                <span>Expense</span>
+                <span>Income</span>
+              </div>
+            </label>
+          </div>
+          <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" required />
+          </div>
+          <div>
+            <label for="amount">Amount</label>
+            <input
+              type="number"
+              name="amount"
+              value="0"
+              min="0.01"
+              step="0.01"
+              required
+            />
+          </div>
+          <div>
+            <label for="date">Date</label>
+            <input type="date" name="date" required />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+  
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
