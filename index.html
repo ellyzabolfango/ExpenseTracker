@@ -10,31 +10,42 @@
   </head>
   <body>
     <script>
-      // Check if user is logged in
-      var isLoggedIn = localStorage.getItem("isLoggedIn");
 
-      if (!isLoggedIn) {
-        // Display a warning message if user is not logged in
-        alert("Warning: You are not logged in. You will be redirected to the login page.");
-        // Redirect to login page
-        window.location.href = "login.html";
-      } else {
-        // Fetch user information from localStorage or any other source
-        var users = JSON.parse(localStorage.getItem("users"));
-        if (user) {
-        // Populate user's name in the user profile section
-        var name = document.getElementById('name').textContent;
-        }
-      }
+        document.addEventListener("DOMContentLoaded", function() {
+            var isLoggedIn = localStorage.getItem("isLoggedIn");
+
+        if (!isLoggedIn) {
+            // Display a warning message if user is not logged in
+            alert("Warning: You are not logged in. You will be redirected to the login page.");
+            // Redirect to login page
+            window.location.href = "login.html";
+        } else {
+            var loggedInUserEmail = localStorage.getItem("loggedInUserEmail");
+            var users = JSON.parse(localStorage.getItem("users"));
+
+            var loggedInUser = users.find(function(user) {
+                return user.email === loggedInUserEmail;
+            });
+
+            if (loggedInUser) {
+                var userNameElement = document.getElementById('userName');
+                userNameElement.textContent = loggedInUser.name;
+            } else {
+                alert("User not found. Please log in again.");
+                window.location.href = "login.html";
+            }
+            }
+        });
+
     </script>
 
-    <nav class="navbar">
+  <nav class="navbar">
       <div class="user-profile">
-          <span id="userName"></span>
-          <img id="userIcon" src="icon.png" alt="User Icon">
-      </div>
+        <span id="userName"></span>
+        <img id="userIcon" src="icon.png" alt="User Icon">
+    </div>
       <button onclick="logout()">Logout</button>
-    </nav>
+  </nav>
   
     <h1>Expense Tracker</h1>
 
