@@ -235,7 +235,7 @@ ul li:hover .action {
   margin-bottom: 0.5rem;
 }
 #myChart {
-  width: 500; /* Pakilagay ang sukat na gusto mo */
+  width: 100; /* Pakilagay ang sukat na gusto mo */
   height: 200px; /* Pakilagay ang sukat na gusto mo */
   margin: auto; /* I-center ang chart sa page */
   display: block;
