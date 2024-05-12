@@ -241,7 +241,7 @@ ul li:hover .action {
   display: block;
 }
 #myChart {
-  width: 400px; /* I-adjust ang width base sa iyong preference */
+  width: 200px; /* I-adjust ang width base sa iyong preference */
   height: 300px; /* I-adjust ang height base sa iyong preference */
   background: linear-gradient(to bottom, #ffffff, #f0f0f0); /* Gradient background color */
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1); /* Shadow effect */
